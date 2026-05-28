@@ -1,0 +1,171 @@
+/* ===== Journal Theme: Crimson & Violet ===== */
+
+:root {
+  --bg: #0b0610;
+  --panel: rgba(20, 10, 30, 0.75);
+  --text: #f3e9ff;
+  --muted: #b9a7c9;
+
+  --red: #ff3b5c;
+  --deep-red: #b3122f;
+
+  --purple: #a855f7;
+  --deep-purple: #5b21b6;
+
+  --accent-glow: 0 0 20px rgba(168, 85, 247, 0.35),
+                 0 0 35px rgba(255, 59, 92, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at top, #1a0b22 0%, var(--bg) 60%);
+  color: var(--text);
+  line-height: 1.7;
+  letter-spacing: 0.2px;
+}
+
+/* Page container feel */
+.container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 30px;
+  background: var(--panel);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 18px;
+  box-shadow: var(--accent-glow);
+  backdrop-filter: blur(10px);
+}
+
+/* Headings */
+h1, h2, h3 {
+  margin-top: 0.6em;
+  margin-bottom: 0.4em;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Fancy gradient H1 */
+h1 {
+  font-size: 2.4rem;
+  background: linear-gradient(90deg, var(--red), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 18px rgba(255, 59, 92, 0.25);
+}
+
+/* Secondary headings */
+h2 {
+  color: var(--purple);
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.25);
+}
+
+h3 {
+  color: var(--red);
+  opacity: 0.9;
+}
+
+/* Paragraph styling */
+p {
+  color: var(--text);
+  margin: 0.75em 0;
+  padding-left: 10px;
+  border-left: 2px solid rgba(168, 85, 247, 0.35);
+}
+
+/* Links */
+a {
+  color: var(--purple);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(168, 85, 247, 0.6);
+  transition: 0.2s ease;
+}
+
+a:hover {
+  color: var(--red);
+  border-bottom-color: var(--red);
+  text-shadow: 0 0 10px rgba(255, 59, 92, 0.3);
+}
+
+/* Cards / journal entries */
+.card {
+  background: rgba(10, 5, 20, 0.7);
+  border: 1px solid rgba(255, 59, 92, 0.15);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin: 16px 0;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.25);
+}
+
+/* Inputs for journaling */
+input, textarea {
+  width: 100%;
+  background: rgba(15, 8, 25, 0.85);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: var(--text);
+  outline: none;
+  margin-top: 8px;
+}
+
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 12px rgba(255, 59, 92, 0.25);
+}
+
+/* Buttons */
+button {
+  background: linear-gradient(90deg, var(--purple), var(--red));
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: 0.2s ease;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+}
+
+button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(255, 59, 92, 0.35);
+}
+
+/* Subtle divider */
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(168,85,247,0.4), transparent);
+  margin: 24px 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0610;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--purple), var(--red));
+  border-radius: 10px;
+}
