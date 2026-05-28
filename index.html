@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEX V5 Meeting Documentation</title>
+    <link rel="stylesheet" href="https://chaithetimber.github.io/main.css">
+</head>
+<body>
+    <div class="container">
+
+        <h1>Test meeting documentation. very basic!</h1>
+        <p>Post-meeting summary after successful design review and planning session.</p>
+
+        <h2>Meeting Summary</h2>
+        <p>The team finalized the robot architecture, drivetrain choice, and sensor layout for the upcoming competition season.</p>
+
+        <h2>Objectives</h2>
+        <ul>
+            <li>Build a reliable VEX V5 drivetrain</li>
+            <li>Integrate autonomous routines</li>
+            <li>Improve consistency in scoring mechanisms</li>
+            <li>Optimize battery and motor efficiency</li>
+        </ul>
+
+        <h2>Final Design Decisions</h2>
+        <ul>
+            <li>6-wheel tank drive with high torque motors</li>
+            <li>Optical sensor for line tracking</li>
+            <li>Gyroscope for rotation stability</li>
+            <li>Modular intake system for quick repairs</li>
+        </ul>
+
+        <h2>Hardware Components</h2>
+        <ul>
+            <li>VEX V5 Brain</li>
+            <li>Smart Motors (11W)</li>
+            <li>Optical Sensor</li>
+            <li>Inertial Sensor</li>
+            <li>Controller for driver input</li>
+        </ul>
+
+        <h2>Drivetrain Differentials (How turning works)</h2>
+        <p>
+            A differential describes how left and right wheels can rotate at different speeds, allowing smooth turning.
+            In VEX V5, this is usually done by software control rather than a physical gear differential.
+        </p>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Differential_animation.gif/320px-Differential_animation.gif" alt="Differential example" style="max-width:100%;">
+
+        <p>
+            Instead of a mechanical differential, VEX robots simulate this by adjusting motor speeds independently.
+        </p>
+
+        <h2>Odometry Wheels (Tracking Position)</h2>
+        <p>
+            Odometry wheels are passive tracking wheels that measure robot movement using encoders.
+            They allow accurate autonomous positioning.
+        </p>
+
+        <img src="https://www.desmos.com/assets/img/examples/robot_odometry.png" alt="Odometry example" style="max-width:100%;">
+
+        <p>
+            Most advanced systems use 2–3 tracking wheels to measure X, Y, and rotation.
+        </p>
+
+        <h2>Control System Code (C++)</h2>
+        <pre><code>
+#include "vex.h"
+
+using namespace vex;
+
+competition Competition;
+
+motor leftMotor(PORT1, ratio18_1, false);
+motor rightMotor(PORT10, ratio18_1, true);
+
+int main() {
+    vexcodeInit();
+
+    while (true) {
+        int forward = Controller1.Axis3.position();
+        int turn = Controller1.Axis1.position();
+
+        leftMotor.spin(forward + turn);
+        rightMotor.spin(forward - turn);
+
+        wait(20, msec);
+    }
+}
+        </code></pre>
+
+        <h2>Next Steps</h2>
+        <ul>
+            <li>Begin chassis construction</li>
+            <li>Test drivetrain responsiveness</li>
+            <li>Implement autonomous pathing</li>
+            <li>Schedule next design review meeting</li>
+        </ul>
+
+    </div>
+</body>
+</html>
