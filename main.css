@@ -1,4 +1,4 @@
-/* ===== Journal Theme: Crimson & Violet ===== */
+/* ===== Journal Theme: Crimson & Violet (with Code Support) ===== */
 
 :root {
   --bg: #0b0610;
@@ -7,13 +7,13 @@
   --muted: #b9a7c9;
 
   --red: #ff3b5c;
-  --deep-red: #b3122f;
-
   --purple: #a855f7;
-  --deep-purple: #5b21b6;
 
-  --accent-glow: 0 0 20px rgba(168, 85, 247, 0.35),
-                 0 0 35px rgba(255, 59, 92, 0.25);
+  --code-bg: rgba(10, 5, 18, 0.95);
+  --code-border: rgba(168, 85, 247, 0.35);
+
+  --glow: 0 0 20px rgba(168, 85, 247, 0.25),
+          0 0 35px rgba(255, 59, 92, 0.15);
 }
 
 * {
@@ -22,147 +22,169 @@
 
 body {
   margin: 0;
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: "Segoe UI", system-ui, sans-serif;
   background: radial-gradient(circle at top, #1a0b22 0%, var(--bg) 60%);
   color: var(--text);
   line-height: 1.7;
-  letter-spacing: 0.2px;
 }
 
-/* Page container feel */
+/* ===== Layout ===== */
+
 .container {
   max-width: 900px;
   margin: 60px auto;
   padding: 30px;
   background: var(--panel);
-  border: 1px solid rgba(168, 85, 247, 0.25);
   border-radius: 18px;
-  box-shadow: var(--accent-glow);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  box-shadow: var(--glow);
   backdrop-filter: blur(10px);
 }
 
-/* Headings */
-h1, h2, h3 {
-  margin-top: 0.6em;
-  margin-bottom: 0.4em;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
+/* ===== Headings ===== */
 
-/* Fancy gradient H1 */
 h1 {
   font-size: 2.4rem;
   background: linear-gradient(90deg, var(--red), var(--purple));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 18px rgba(255, 59, 92, 0.25);
 }
 
-/* Secondary headings */
 h2 {
   color: var(--purple);
-  text-shadow: 0 0 10px rgba(168, 85, 247, 0.25);
 }
 
 h3 {
   color: var(--red);
-  opacity: 0.9;
 }
 
-/* Paragraph styling */
+/* ===== Paragraphs ===== */
+
 p {
-  color: var(--text);
-  margin: 0.75em 0;
   padding-left: 10px;
-  border-left: 2px solid rgba(168, 85, 247, 0.35);
+  border-left: 2px solid rgba(168, 85, 247, 0.3);
+  color: var(--text);
 }
 
-/* Links */
+/* ===== Links ===== */
+
 a {
   color: var(--purple);
   text-decoration: none;
-  border-bottom: 1px dashed rgba(168, 85, 247, 0.6);
-  transition: 0.2s ease;
 }
 
 a:hover {
   color: var(--red);
-  border-bottom-color: var(--red);
-  text-shadow: 0 0 10px rgba(255, 59, 92, 0.3);
 }
 
-/* Cards / journal entries */
+/* ===== Cards ===== */
+
 .card {
   background: rgba(10, 5, 20, 0.7);
-  border: 1px solid rgba(255, 59, 92, 0.15);
   border-radius: 14px;
-  padding: 18px 20px;
+  padding: 16px;
+  margin: 14px 0;
+  border: 1px solid rgba(255, 59, 92, 0.12);
+}
+
+/* =========================================================
+   CODE BLOCKS (NEW)
+   ========================================================= */
+
+/* Code wrapper */
+pre {
+  position: relative;
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: 12px;
+  padding: 16px 16px 16px 16px;
+  overflow-x: auto;
+  box-shadow: var(--glow);
   margin: 16px 0;
-  box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 25px rgba(168, 85, 247, 0.25);
+/* Actual code */
+code {
+  font-family: "Fira Code", "Consolas", monospace;
+  font-size: 0.95rem;
+  color: #f5e9ff;
 }
 
-/* Inputs for journaling */
+/* Inline code (like `this`) */
+p code, li code {
+  background: rgba(168, 85, 247, 0.15);
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(168, 85, 247, 0.25);
+}
+
+/* Language label (C++, C#, etc.) */
+pre::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: rgba(168, 85, 247, 0.12);
+  padding: 2px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Language-specific accents */
+pre[data-lang="cpp"] {
+  border-color: rgba(255, 59, 92, 0.35);
+}
+
+pre[data-lang="csharp"] {
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+pre[data-lang="python"] {
+  border-color: rgba(255, 180, 80, 0.3);
+}
+
+pre[data-lang="javascript"] {
+  border-color: rgba(255, 230, 80, 0.3);
+}
+
+/* ===== Inputs ===== */
+
 input, textarea {
   width: 100%;
   background: rgba(15, 8, 25, 0.85);
   border: 1px solid rgba(168, 85, 247, 0.3);
   border-radius: 10px;
-  padding: 10px 12px;
+  padding: 10px;
   color: var(--text);
-  outline: none;
-  margin-top: 8px;
 }
 
 textarea {
   min-height: 140px;
-  resize: vertical;
 }
 
-input:focus, textarea:focus {
-  border-color: var(--red);
-  box-shadow: 0 0 12px rgba(255, 59, 92, 0.25);
-}
+/* ===== Buttons ===== */
 
-/* Buttons */
 button {
   background: linear-gradient(90deg, var(--purple), var(--red));
-  color: white;
   border: none;
-  padding: 10px 16px;
+  padding: 10px 14px;
   border-radius: 10px;
+  color: white;
   cursor: pointer;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  transition: 0.2s ease;
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
 }
 
 button:hover {
   transform: scale(1.03);
-  box-shadow: 0 0 20px rgba(255, 59, 92, 0.35);
 }
 
-/* Subtle divider */
-hr {
-  border: none;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(168,85,247,0.4), transparent);
-  margin: 24px 0;
-}
+/* ===== Scrollbar ===== */
 
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0b0610;
 }
 
 ::-webkit-scrollbar-thumb {
